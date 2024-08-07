@@ -8,7 +8,7 @@
 
 <meta name="author" content="Areeb Atif">
 
-<title>. - Home</title>
+<title>BMI &amp; Diabetes - BMI and Diabetes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">.</span>
+    <span class="navbar-title">BMI &amp; Diabetes</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -95,7 +95,15 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Model.html"> 
+<span class="menu-text">Model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Sources.html"> 
+<span class="menu-text">Sources</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -116,7 +124,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Home</h1>
+<h1 class="title">BMI and Diabetes</h1>
+<p class="subtitle lead">Understanding the Impact of BMI on Diabetes Risk</p>
 </div>
 
 
@@ -140,117 +149,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>BMI, otherwise known as body mass index is derived from the mass and height of a person which is used to categorize people into different weight groups. I gathered data from a kaggle dataset called “Pima Indians Diabetes Database” which got its data from the National Institute of Diabetes and Digestive and Kidney Diseases. using data from the National Institute of Diabetes and Digestive and Kidney Diseases, we seek to understand the correlation, if any, between different BMI levels and the risk of diabetes. We modeled BMI, a continuous variable, as a function of diabetes. People with higher than normal BMI are at a higher likelihood of developing diabetes. As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.</p>
-<p>Understanding the Impact of BMI on Diabetes Risk</p>
-<p>Body Mass Index (BMI) is a widely used measure to assess an individual’s body fat based on their weight and height. In our analysis, we examined the relationship between BMI and the likelihood of having diabetes using a Bayesian logistic regression model.</p>
-<p>The graph illustrates how the probability of having diabetes changes with BMI. The x-axis represents BMI values ranging from the lowest to the highest observed in our dataset, while the y-axis shows the predicted probability of diabetes. The blue line indicates the mean predicted probability, and the shaded area around it represents the 95% credible intervals, showing the range within which the true probability is likely to fall.</p>
-<p>Key Insights:</p>
-<p>Increasing Risk with Higher BMI: As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.</p>
-<p>Safe and Healthy BMI Range: The graph highlights that individuals with lower BMI values have a substantially lower probability of having diabetes. Therefore, maintaining a healthy BMI—typically considered to be between 18.5 and 24.9—can significantly reduce the risk of diabetes. Individuals with BMI values in this range are likely to have a much lower risk compared to those with higher BMI values.</p>
-<p>Uncertainty and Recommendations: The shaded credible intervals provide a measure of uncertainty around the predictions. While the general trend shows increasing risk with higher BMI, the exact probability at any given BMI can vary. It’s essential to consider other factors like diet, physical activity, and genetics when evaluating diabetes risk. For individuals looking to reduce their diabetes risk, aiming for a BMI within the healthy range is a practical and effective strategy.</p>
-<p>By understanding these patterns, healthcare professionals can better advise individuals on weight management strategies to minimize diabetes risk and promote overall health.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-SAMPLING FOR MODEL 'bernoulli' NOW (CHAIN 1).
-Chain 1: 
-Chain 1: Gradient evaluation took 6.8e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.68 seconds.
-Chain 1: Adjust your expectations accordingly!
-Chain 1: 
-Chain 1: 
-Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 1: 
-Chain 1:  Elapsed Time: 0.17 seconds (Warm-up)
-Chain 1:                0.166 seconds (Sampling)
-Chain 1:                0.336 seconds (Total)
-Chain 1: 
-
-SAMPLING FOR MODEL 'bernoulli' NOW (CHAIN 2).
-Chain 2: 
-Chain 2: Gradient evaluation took 4.1e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.41 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 2: 
-Chain 2:  Elapsed Time: 0.176 seconds (Warm-up)
-Chain 2:                0.166 seconds (Sampling)
-Chain 2:                0.342 seconds (Total)
-Chain 2: 
-
-SAMPLING FOR MODEL 'bernoulli' NOW (CHAIN 3).
-Chain 3: 
-Chain 3: Gradient evaluation took 5.3e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.53 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
-Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 3: 
-Chain 3:  Elapsed Time: 0.157 seconds (Warm-up)
-Chain 3:                0.196 seconds (Sampling)
-Chain 3:                0.353 seconds (Total)
-Chain 3: 
-
-SAMPLING FOR MODEL 'bernoulli' NOW (CHAIN 4).
-Chain 4: 
-Chain 4: Gradient evaluation took 7.4e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.74 seconds.
-Chain 4: Adjust your expectations accordingly!
-Chain 4: 
-Chain 4: 
-Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 0.165 seconds (Warm-up)
-Chain 4:                0.159 seconds (Sampling)
-Chain 4:                0.324 seconds (Total)
-Chain 4: </code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -259,6 +158,10 @@ Chain 4: </code></pre>
 </div>
 </div>
 </div>
+<p>The graph illustrates how the probability of having diabetes changes with BMI. The x-axis represents BMI values ranging from the lowest to the highest observed in our dataset, while the y-axis shows the predicted probability of diabetes. The blue line indicates the mean predicted probability, and the shaded area around it represents the 95% credible intervals, showing the range within which the true probability is likely to fall.</p>
+<p>Increasing Risk with Higher BMI: As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.</p>
+<p>Safe and Healthy BMI Range: The graph highlights that individuals with lower BMI values have a substantially lower probability of having diabetes. Therefore, maintaining a healthy BMI—typically considered to be between 18.5 and 24.9—can significantly reduce the risk of diabetes. Individuals with BMI values in this range are likely to have a much lower risk compared to those with higher BMI values.</p>
+<p>Uncertainty and Recommendations: The shaded credible intervals provide a measure of uncertainty around the predictions. While the general trend shows increasing risk with higher BMI, the exact probability at any given BMI can vary. It’s essential to consider other factors like diet, physical activity, and genetics when evaluating diabetes risk. For individuals looking to reduce their diabetes risk, aiming for a BMI within the healthy range is a practical and effective strategy.</p>
 
 
 
@@ -344,7 +247,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/AreebAtif1\.github\.io\/Final-Project\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
