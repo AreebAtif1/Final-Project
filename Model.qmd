@@ -1,0 +1,117 @@
+---
+title: "Model"
+echo: false
+message: false
+warning: false
+label: setup
+---
+
+Using a Bayesian regression model, and  the  formula $$Risk∼β0​+β1​×BMI$$
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+library(brms)
+library(gt)  # For creating and formatting the table
+
+# Load the dataset
+data <- read.csv("diabetes.csv")
+
+# Convert 'Outcome' to a factor (0 = No diabetes, 1 = Diabetes)
+data$Outcome <- as.factor(data$Outcome)
+
+# Define the Bayesian logistic regression model
+model <- brm(
+  Outcome ~ BMI,                   # Predicting 'Outcome' based on 'BMI'
+  data = data,                     # Dataset
+  family = bernoulli(),            # Logistic regression for binary outcome
+  prior = c(
+    set_prior("normal(0, 10)", class = "b"),        # Prior for BMI coefficient
+    set_prior("normal(0, 10)", class = "Intercept") # Prior for the intercept
+  ),
+  chains = 4,                      # Number of MCMC chains
+  iter = 2000,                     # Iterations per chain
+  warmup = 1000,                   # Warmup (burn-in) iterations
+  cores = 2                        # CPU cores to use
+)
+
+# Extract the posterior summary for fixed effects
+coef_table <- posterior_summary(model) %>% 
+  as_tibble(rownames = "Characteristic") %>%
+  rename(
+    Beta = Estimate,
+    SE = Est.Error,
+    `95% CI Lower` = Q2.5,
+    `95% CI Upper` = Q97.5
+  )
+
+# Format the table using gt
+coef_table_gt <- coef_table %>%
+  gt() %>%
+  tab_header(title = "Model Coefficients") %>%
+  fmt_number(
+    columns = c(Beta, SE, `95% CI Lower`, `95% CI Upper`),
+    decimals = 2
+  ) %>%
+  cols_align(align = "center", columns = everything()) %>%
+  tab_options(
+    table.width = pct(80),
+    column_labels.font.weight = "bold",
+    data_row.padding = px(5)
+  )
+
+# Display the formatted table
+coef_table_gt
+```
+
+
+### 1. Model Formula
+
+**Logistic Regression Model:**
+
+\[ \text{logit}(p) = \beta_0 + \beta_1 \cdot \text{BMI} \]
+
+- **\( p \)**: Probability of the outcome (e.g., having diabetes).
+- **logit(p)**: The log-odds of the probability \( p \), which is defined as:
+
+  \[ \text{logit}(p) = \ln\left(\frac{p}{1-p}\right) \]
+
+  This transformation converts probabilities (ranging from 0 to 1) into a scale from \(-\infty\) to \(+\infty\).
+
+- **\( \beta_0 \)**: The intercept, representing the log-odds of the outcome when all predictors (e.g., BMI) are zero.
+- **\( \beta_1 \)**: The coefficient for BMI, indicating how the log-odds of the outcome change with a one-unit increase in BMI.
+
+### 2. Likelihood Function
+
+**Binary Outcome:**
+
+\[ P(Y | \beta_0, \beta_1) \]
+
+- **\( Y \)**: The binary outcome variable (0 or 1).
+- **\( p \)**: The probability of \( Y = 1 \) given BMI, modeled by the logistic function:
+
+  \[ p = \frac{1}{1 + e^{-(\beta_0 + \beta_1 \cdot \text{BMI})}} \]
+
+This function maps the log-odds back to a probability between 0 and 1.
+
+### 3. Priors
+
+In Bayesian regression, prior distributions are specified for the model parameters:
+
+- **Intercept (\( \beta_0 \))**:  
+  \( \beta_0 \sim \mathcal{N}(0, 10) \)  
+  A normal distribution with mean 0 and standard deviation 10, allowing a wide range of intercept values.
+
+- **Coefficient (\( \beta_1 \))**:  
+  \( \beta_1 \sim \mathcal{N}(0, 10) \)  
+  Similarly, a normal distribution with mean 0 and standard deviation 10 for the BMI coefficient.
+
+### Summary
+
+- **Logit Function**: Converts probability \( p \) to log-odds.
+- **Logistic Function**: Converts log-odds back to probability.
+- **Likelihood**: Describes the distribution of observed data \( Y \) given the parameters and predictors.
+- **Priors**: Reflect beliefs about the parameters before observing the data.
+
+The Bayesian logistic regression model updates the priors based on observed data to estimate the parameters \( \beta_0 \) and \( \beta_1 \).
+

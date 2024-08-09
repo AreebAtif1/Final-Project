@@ -1,0 +1,12 @@
+---
+title: "About Me"
+---
+
+My Name is Areeb Atif, I am a 17 year old rising senior from New Jersey. More of my work can be seen on my
+Github page (https://github.com/AreebAtif1).
+
+If you need to reach me, my email is areebatif2007@gmail.com
+
+My project is about how BMI and diabetes are correlated and at what level of BMI puts an individual at a great risk of diabetes. Here is the link to my Github Repo (https://github.com/AreebAtif1/Final-Project).
+
+This project was created as a part of Kane’s Data Science Bootcamp https://bootcamp.davidkane.info/.

@@ -1,0 +1,22 @@
+project:
+  type: website
+
+website:
+  title: "BMI & Diabetes"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - href: Model.qmd
+        text: Model
+      - Sources.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

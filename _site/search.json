@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "Sources.html",
+    "href": "Sources.html",
+    "title": "Sources",
+    "section": "",
+    "text": "Kaggle Dataset\n\n(https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)\n\nChatGPt\nDavid Kane’s course"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BMI and Diabetes",
+    "section": "",
+    "text": "BMI, otherwise known as body mass index is derived from the mass and height of a person which is used to categorize people into different weight groups. I gathered data from a kaggle dataset called “Pima Indians Diabetes Database” which got its data from the National Institute of Diabetes and Digestive and Kidney Diseases. using data from the National Institute of Diabetes and Digestive and Kidney Diseases, we seek to understand the correlation, if any, between different BMI levels and the risk of diabetes. We modeled BMI, a continuous variable, as a function of diabetes. People with higher than normal BMI are at a higher likelihood of developing diabetes. As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.\n\n\n\n\n\n\n\n\n\nThe graph illustrates how the probability of having diabetes changes with BMI. The x-axis represents BMI values ranging from the lowest to the highest observed in our dataset, while the y-axis shows the predicted probability of diabetes. The blue line indicates the mean predicted probability, and the shaded area around it represents the 95% credible intervals, showing the range within which the true probability is likely to fall.\nIncreasing Risk with Higher BMI: As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.\nSafe and Healthy BMI Range: The graph highlights that individuals with lower BMI values have a substantially lower probability of having diabetes. Therefore, maintaining a healthy BMI—typically considered to be between 18.5 and 24.9—can significantly reduce the risk of diabetes. Individuals with BMI values in this range are likely to have a much lower risk compared to those with higher BMI values.\nUncertainty and Recommendations: The shaded credible intervals provide a measure of uncertainty around the predictions. While the general trend shows increasing risk with higher BMI, the exact probability at any given BMI can vary. It’s essential to consider other factors like diet, physical activity, and genetics when evaluating diabetes risk. For individuals looking to reduce their diabetes risk, aiming for a BMI within the healthy range is a practical and effective strategy.\nOverall, we can see that a BMI of 40 puts one at a 50 percent higher risk of getting diabetes, while a BMI of 20 is only at about 13%, we can say this with high confidence since it follows modern medical science."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "My Name is Areeb Atif, I am a 17 year old rising senior from New Jersey. More of my work can be seen on my Github page (https://github.com/AreebAtif1).\nIf you need to reach me, my email is areebatif2007@gmail.com\nMy project is about how BMI and diabetes are correlated and at what level of BMI puts an individual at a great risk of diabetes. Here is the link to my Github Repo (https://github.com/AreebAtif1/Final-Project).\nThis project was created as a part of Kane’s Data Science Bootcamp https://bootcamp.davidkane.info/."
+  },
+  {
+    "objectID": "Model.html",
+    "href": "Model.html",
+    "title": "Model",
+    "section": "",
+    "text": "Using a Bayesian regression model, and the formula \\[Risk∼β0​+β1​×BMI\\]\n\n\n\n\n\n\n\n\n\nModel Coefficients\n\n\nCharacteristic\nBeta\nSE\n95% CI Lower\n95% CI Upper\n\n\n\n\nb_Intercept\n−3.71\n0.41\n−4.51\n−2.92\n\n\nb_BMI\n0.09\n0.01\n0.07\n0.12\n\n\nIntercept\n−0.70\n0.08\n−0.86\n−0.54\n\n\nlprior\n−6.45\n0.00\n−6.45\n−6.44\n\n\nlp__\n−467.80\n0.98\n−470.43\n−466.83\n\n\n\n\n\n\n\n\n\n1. Model Formula\nLogistic Regression Model:\n[ (p) = _0 + _1 ]\n\n( p ): Probability of the outcome (e.g., having diabetes).\nlogit(p): The log-odds of the probability ( p ), which is defined as:\n[ (p) = () ]\nThis transformation converts probabilities (ranging from 0 to 1) into a scale from (-) to (+).\n**( _0 )**: The intercept, representing the log-odds of the outcome when all predictors (e.g., BMI) are zero.\n**( _1 )**: The coefficient for BMI, indicating how the log-odds of the outcome change with a one-unit increase in BMI.\n\n\n\n2. Likelihood Function\nBinary Outcome:\n[ P(Y | _0, _1) ]\n\n( Y ): The binary outcome variable (0 or 1).\n( p ): The probability of ( Y = 1 ) given BMI, modeled by the logistic function:\n[ p = ]\n\nThis function maps the log-odds back to a probability between 0 and 1.\n\n\n3. Priors\nIn Bayesian regression, prior distributions are specified for the model parameters:\n\n**Intercept (( _0 ))**:\n( _0 (0, 10) )\nA normal distribution with mean 0 and standard deviation 10, allowing a wide range of intercept values.\n**Coefficient (( _1 ))**:\n( _1 (0, 10) )\nSimilarly, a normal distribution with mean 0 and standard deviation 10 for the BMI coefficient.\n\n\n\nSummary\n\nLogit Function: Converts probability ( p ) to log-odds.\nLogistic Function: Converts log-odds back to probability.\nLikelihood: Describes the distribution of observed data ( Y ) given the parameters and predictors.\nPriors: Reflect beliefs about the parameters before observing the data.\n\nThe Bayesian logistic regression model updates the priors based on observed data to estimate the parameters ( _0 ) and ( _1 )."
+  }
+]

@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 4eca32d8-1d2b-482a-b583-513ff940f7eb
+      url: 'https://areeb-atif.quarto.pub/bmi-and-diabetes'

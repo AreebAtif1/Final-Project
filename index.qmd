@@ -1,0 +1,80 @@
+---
+title: "BMI and Diabetes"
+subtitle: "Understanding the Impact of BMI on Diabetes Risk"
+echo: false
+message: false
+label: setup
+warning: false
+---
+
+
+BMI, otherwise known as body mass index is derived from the mass and height of a person which is used to categorize people into different weight groups. I gathered data from a kaggle dataset called "Pima Indians Diabetes Database" which got its data from the National Institute of Diabetes and Digestive and Kidney Diseases. using data from the National Institute of Diabetes and Digestive and Kidney Diseases, we seek to understand the correlation, if any, between different BMI levels and the risk of diabetes. We modeled BMI, a continuous variable, as a function of diabetes. People with  higher than normal BMI are at a higher likelihood of developing diabetes. As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.
+
+
+
+```{r}
+# Load necessary libraries with suppressed messages
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(rstanarm)
+})
+
+# Set rstan options to reduce output verbosity
+rstan::rstan_options(auto_write = TRUE, verbose = FALSE)
+
+# Load the dataset
+data <- read.csv("diabetes.csv")
+
+# Preprocess the data: Remove rows with missing BMI values
+data <- data %>% filter(!is.na(BMI))
+
+bayesian_model <- stan_glm(Outcome ~ BMI, 
+                           data = data, 
+                           family = binomial, 
+                           prior = normal(0, 2.5), 
+                           refresh = 0)
+
+# Predict probability of diabetes for a range of BMI values
+BMI_values <- seq(min(data$BMI), max(data$BMI), length.out = 100)
+predicted_probs <- posterior_epred(bayesian_model, newdata = data.frame(BMI = BMI_values))
+
+# Calculate the mean and credible intervals
+predicted_mean <- apply(predicted_probs, 2, mean)
+predicted_lower <- apply(predicted_probs, 2, quantile, probs = 0.025)
+predicted_upper <- apply(predicted_probs, 2, quantile, probs = 0.975)
+
+# Create a data frame for plotting
+plot_data <- data.frame(
+  BMI = BMI_values,
+  Mean = predicted_mean,
+  Lower = predicted_lower,
+  Upper = predicted_upper
+)
+
+# Plot the predicted probabilities with credible intervals
+ggplot(plot_data, aes(x = BMI, y = Mean)) +
+  geom_line(color = "blue") +
+  geom_ribbon(aes(ymin = Lower, ymax = Upper), alpha = 0.2, fill = "blue") +
+  labs(
+    title = "Effect of BMI on the Likelihood of Having Diabetes",
+    x = "Body Mass Index (BMI)",
+    y = "Predicted Probability of Diabetes"
+  ) +
+  theme_minimal()
+```
+
+
+
+
+The graph illustrates how the probability of having diabetes changes with BMI. The x-axis represents BMI values ranging from the lowest to the highest observed in our dataset, while the y-axis shows the predicted probability of diabetes. The blue line indicates the mean predicted probability, and the shaded area around it represents the 95% credible intervals, showing the range within which the true probability is likely to fall.
+
+Increasing Risk with Higher BMI: As depicted in the graph, the probability of having diabetes increases with BMI. This suggests that higher BMI is associated with a higher likelihood of developing diabetes. This aligns with well-established medical knowledge that excess body weight is a significant risk factor for diabetes.
+
+Safe and Healthy BMI Range: The graph highlights that individuals with lower BMI values have a substantially lower probability of having diabetes. Therefore, maintaining a healthy BMI—typically considered to be between 18.5 and 24.9—can significantly reduce the risk of diabetes. Individuals with BMI values in this range are likely to have a much lower risk compared to those with higher BMI values.
+
+Uncertainty and Recommendations: The shaded credible intervals provide a measure of uncertainty around the predictions. While the general trend shows increasing risk with higher BMI, the exact probability at any given BMI can vary. It’s essential to consider other factors like diet, physical activity, and genetics when evaluating diabetes risk. For individuals looking to reduce their diabetes risk, aiming for a BMI within the healthy range is a practical and effective strategy.
+
+Overall, we can see that a BMI of 40 puts one at a 50 percent higher risk of getting diabetes, while a BMI of 20 is only at about 13%, we can say this with high confidence since it follows modern medical science.
+
+
